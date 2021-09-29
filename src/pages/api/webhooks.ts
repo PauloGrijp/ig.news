@@ -23,7 +23,9 @@ export const config = {
 }
 
 const relevantEvents = new Set([
-  'checkout.session.completed'
+  'checkout.session.completed',
+  'customer.subscription.update',
+  'customer.subscription.deleted',
 ])
 
 export default async function webhooks(req: NextApiRequest, res: NextApiResponse) {
@@ -44,15 +46,23 @@ export default async function webhooks(req: NextApiRequest, res: NextApiResponse
     if (relevantEvents.has(type)) {
       try {
         switch (type) {
+          case 'customer.subscription.update':
+          case 'customer.subscription.deleted':
+
+            const subscription = event.data.object as Stripe.Subscription;
+
+            await saveSubscribe(
+              subscription.id,
+              subscription.customer.toString(),
+              false,
+            )
+            break;
           case 'checkout.session.completed':
-
             const checkoutSession = event.data.object as Stripe.Checkout.Session;
-
             await saveSubscribe(
               checkoutSession.subscription.toString(),
               checkoutSession.customer.toString()
             )
-
             break;
           default:
             throw new Error('Unhandled event.')
