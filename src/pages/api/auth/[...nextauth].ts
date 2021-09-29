@@ -7,7 +7,7 @@ import Providers from "next-auth/providers"
 import { fauna } from '../../../services/fauna'
 
 export default NextAuth({
-  // Configure one or more authentication providers
+
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
