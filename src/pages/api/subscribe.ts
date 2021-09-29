@@ -49,9 +49,6 @@ export default async function subscribe(req: NextApiRequest, res: NextApiRespons
       customerId = stripeCustomer.id
     }
 
-
-
-
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
       customer: customerId,
       payment_method_types: ['card'],
