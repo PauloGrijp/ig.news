@@ -54,14 +54,14 @@ export default async function webhooks(req: NextApiRequest, res: NextApiResponse
             await saveSubscribe(
               subscription.id,
               subscription.customer.toString(),
-              false,
             )
             break;
           case 'checkout.session.completed':
             const checkoutSession = event.data.object as Stripe.Checkout.Session;
             await saveSubscribe(
               checkoutSession.subscription.toString(),
-              checkoutSession.customer.toString()
+              checkoutSession.customer.toString(),
+              true,
             )
             break;
           default:
