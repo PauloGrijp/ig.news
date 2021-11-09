@@ -32,7 +32,7 @@
 
 &nbsp;
 
-<img src="https://user-images.githubusercontent.com/71772559/113495413-dc476000-94c7-11eb-9d95-d3a301fc989b.gif" width="100%" />
+
 
 &nbsp;
 
