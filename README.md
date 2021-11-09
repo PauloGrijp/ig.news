@@ -1,4 +1,4 @@
-# Ignews 💛🚀
+# Ignews 🚀
 
 &nbsp;
 
